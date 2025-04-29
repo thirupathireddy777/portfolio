@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thirupathi | Cloud Engineer</title>
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent: #ff5722;
+            --card-bg: #111111;
+            --border-radius: 12px;
+            --section-spacing: 80px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            padding: 24px 0;
+            position: sticky;
+            top: 0;
+            background-color: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .home-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .home-button:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .home-button svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+        
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .hero {
+            background: linear-gradient(to right, rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.4));
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff5722, #03a9f4, #4caf50);
+            opacity: 0.2;
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero-subtitle {
+            display: inline-block;
+            background-color: rgba(255, 87, 34, 0.2);
+            color: var(--accent);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        
+        h1 {
+            font-size: 64px;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+        
+        .wave-emoji {
+            display: inline-block;
+            animation: wave 2s infinite;
+            transform-origin: 70% 70%;
+        }
+        
+        @keyframes wave {
+            0% { transform: rotate(0deg); }
+            10% { transform: rotate(14deg); }
+            20% { transform: rotate(-8deg); }
+            30% { transform: rotate(14deg); }
+            40% { transform: rotate(-4deg); }
+            50% { transform: rotate(10deg); }
+            60% { transform: rotate(0deg); }
+            100% { transform: rotate(0deg); }
+        }
+        
+        .hero-desc {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            max-width: 600px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 87, 34, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid var(--text-secondary);
+            margin-left: 16px;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: none;
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 48px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: ".";
+            color: var(--accent);
+        }
+        
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+        
+        .about-text p strong {
+            color: var(--text-primary);
+        }
+        
+        .about-buttons {
+            display: flex;
+            margin-top: 32px;
+            gap: 16px;
+        }
+        
+        .about-buttons a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .studio-box {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 32px;
+        }
+        
+        .studio-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .studio-content {
+            margin-bottom: 24px;
+        }
+        
+        .studio-content p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+        
+        .services-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 32px;
+        }
+        
+        .service-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            padding: 24px;
+        }
+        
+        .service-icon {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: var(--accent);
+        }
+        
+        .service-title {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+        
+        .service-desc {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 32px;
+        }
+        
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .project-content {
+            padding: 24px;
+        }
+        
+        .project-title {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        
+        .tech-tag {
+            background-color: rgba(255, 87, 34, 0.1);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 60px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stat-value {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(45deg, #ff5722, #03a9f4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+        }
+        
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        
+        .certificate-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            transition: transform 0.3s ease;
+        }
+        
+        .certificate-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .certificate-icon {
+            width: 48px;
+            height: 48px;
+            background-color: rgba(255, 87, 34, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        
+        .certificate-date {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        
+        .certificate-title {
+            font-size: 18px;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        
+        .certificate-issuer {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+        
+        .view-certificate {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        footer {
+            background-color: #050505;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .hero-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: var(--card-bg);
+            padding: 24px;
+            border-radius: var(--border-radius);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+        
+        .modal-content p {
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+        
+        .copy-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .copy-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 87, 34, 0.3);
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 44px;
+            }
+            
+            .hero-desc {
+                font-size: 18px;
+            }
+            
+            .about-container,
+            .projects-grid,
+            .hero-split {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hide-mobile {
+                display: none;
+            }
+            
+            .modal-content {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="home-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                </a>
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#certificates">Certificates</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="hero-split">
+                <div class="hero-content">
+                    <span class="hero-subtitle">ABOUT ME</span>
+                    <h1>I'm Thirupathi<span class="wave-emoji">👋</span></h1>
+                    <p class="hero-desc">Passionate Cloud Engineer from India, pushing the boundaries of cloud technology to create scalable and reliable infrastructure solutions.</p>
+                    <a href="#projects" class="btn">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                </div>
+                <div class="hero-image">
+                    <img src="D:\Family\pics\IMG_9584.jpg" alt="Sunil Reddy">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title">About me</h2>
+            
+            <div class="about-container">
+                <div class="about-text">
+                    <p>I am a <strong>Cloud Engineer</strong> with experience in AWS, Google Cloud, and Azure. My journey in technology began with a passion for building scalable and efficient infrastructure solutions.</p>
+                    
+                    <p>With expertise across multiple cloud platforms, I specialize in designing and implementing infrastructure as code, serverless architectures, and automated deployment pipelines.</p>
+                    
+                    <p>My approach combines technical excellence with business understanding to deliver cloud solutions that are not just technically sound but also aligned with organizational goals.</p>
+                    
+                    <p>Recently, I've expanded my expertise into <strong>Generative AI</strong> and <strong>Large Language Models</strong>, completing several specialized courses to stay at the cutting edge of this transformative technology.</p>
+                    
+                    <div class="about-buttons">
+                        <a href="https://github.com/thirupathireddy777" class="btn" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                            </svg>
+                            View my GitHub
+                        </a>
+                        <a href="/cdn-cgi/l/email-protection#b899969f8dc8c8cdcfc9c8cbceb89f95999194d69b9795" class="btn btn-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            Contact Me
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="studio-box">
+                    <div class="studio-label">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff5722" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                        MY EXPERTISE
+                    </div>
+                    
+                    <div class="studio-content">
+                        <p>Namaste! 🙏 My portfolio is more than a showcase; it's a window into my world, where passion meets purpose. Discover my work.</p>
+                        
+                        <a href="https://drive.google.com/file/d/1p2Ch-OzQ2JdRFUOB_PlNmSoGAX2sP_kA/view?usp=drivesdk" class="btn" target="_blank">Download CV</a>
+                    </div>
+                    
+                    <div class="services-container">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M2 20h20"></path>
+                                    <path d="M5 20v-4h4v4"></path>
+                                    <path d="M15 20v-4h4v4"></path>
+                                    <path d="M5 8v4h14V8"></path>
+                                    <path d="M5 16V4h14v12"></path>
+                                </svg>
+                            </div>
+                            <h3 class="service-title">Cloud Architecture</h3>
+                            <p class="service-desc">Designing robust, scalable cloud infrastructure with best practices for security and performance</p>
+                        </div>
+                        
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="service-title">DevOps & Automation</h3>
+                            <p class="service-desc">Implementing CI/CD pipelines and infrastructure as code to streamline deployment processes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section" id="projects">
+        <div class="container">
+            <h2 class="section-title">Recent Projects</h2>
+            <p style="margin-bottom: 40px; color: var(--text-secondary);">Explore some of my recent cloud engineering projects below. For more, visit my GitHub profile.</p>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">CI-CD on AWS</h3>
+                        <p>Creating a CI-CD pipeline on AWS using AWS CodePipeline</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">AWS CodePipeline</span>
+                            <span class="tech-tag">GitHub</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Scheduling EC2 Instances for Off-Hours</h3>
+                        <p>Starting and stopping EC2 instances based on a time schedule, including IaC</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">AWS Lambda</span>
+                            <span class="tech-tag">AWS EventBridge</span>
+                            <span class="tech-tag">AWS EC2</span>
+                            <span class="tech-tag">AWS IAM</span>
+                            <span class="tech-tag">Terraform</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">S3 Static Website Hosting</h3>
+                        <p>Deployed a fully static website on AWS S3, leveraging CloudFront for content delivery and Route 53 for domain management.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">AWS S3</span>
+                            <span class="tech-tag">CloudFront</span>
+                            <span class="tech-tag">Route 53</span>
+                            <span class="tech-tag">IAM</span>
+                            <span class="tech-tag">Git</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">AWS Lambda: Start & Stop EC2 Instances</h3>
+                        <p>Developed an AWS Lambda function to automate the start and stop of EC2 instances based on schedules using Python and CloudWatch Events.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">AWS Lambda</span>
+                            <span class="tech-tag">EC2</span>
+                            <span class="tech-tag">CloudWatch</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">IAM</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Data Visualization with QuickSight and S3</h3>
+                        <p>Designed and implemented a data visualization dashboard using AWS QuickSight with S3 storage and Athena for SQL queries.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">AWS QuickSight</span>
+                            <span class="tech-tag">S3</span>
+                            <span class="tech-tag">Athena</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">AWS Glue</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section" id="certificates">
+        <div class="container">
+            <h2 class="section-title">Certificates</h2>
+            <p style="margin-bottom: 40px; color: var(--text-secondary);">I constantly upskill myself to stay current with the latest technologies. Here are some of my recent certifications.</p>
+            
+            <div class="certificates-grid">
+                <div class="certificate-card">
+                    <div class="certificate-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff5722" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="8" r="7"></circle>
+                            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                        </svg>
+                    </div>
+                    <div class="certificate-date">April 21, 2025</div>
+                    <h3 class="certificate-title">Microsoft Certified: Azure Administrator Associate</h3>
+                    <div class="certificate-issuer">Microsoft</div>
+                    <a href="#" class="view-certificate" target="_blank">
+                        View Certificate
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </a>
+                </div>
+                
+                <div class="certificate-card">
+                    <div class="certificate-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff5722" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="8" r="7"></circle>
+                            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                        </svg>
+                    </div>
+                    <div class="certificate-date">Unknown</div>
+                    <h3 class="certificate-title">AWS Cloud Computing</h3>
+                    <div class="certificate-issuer">Gokboru Tech Pvt Ltd</div>
+                    <a href="#" class="view-certificate" target="_blank">
+                        View Certificate
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </a>
+                </div>
+                
+                <div class="certificate-card">
+                    <div class="certificate-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff5722" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="8" r="7"></circle>
+                            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                        </svg>
+                    </div>
+                    <div class="certificate-date">April 2, 2025</div>
+                    <h3 class="certificate-title">A Tour of Google Cloud Hands-on Labs</h3>
+                    <div class="certificate-issuer">Google Cloud</div>
+                    <a href="https://coursera.org/verify/CEXHA3UPJM4P" class="view-certificate" target="_blank">
+                        View Certificate
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </a>
+                </div>
+                
+                <div class="certificate-card">
+                    <div class="certificate-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff5722" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="8" r="7"></circle>
+                            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                        </svg>
+                    </div>
+                    <div class="certificate-date">November 10, 2023</div>
+                    <h3 class="certificate-title">The Bits and Bytes of Computer Networking</h3>
+                    <div class="certificate-issuer">Google</div>
+                    <a href="#" class="view-certificate" target="_blank">
+                        View Certificate
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </a>
+                </div>
+                
+                <div class="certificate-card">
+                    <div class="certificate-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff5722" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="8" r="7"></circle>
+                            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                        </svg>
+                    </div>
+                    <div class="certificate-date">November 7, 2023</div>
+                    <h3 class="certificate-title">Introduction to Hardware and Operating Systems</h3>
+                    <div class="certificate-issuer">IBM</div>
+                    <a href="https://coursera.org/verify/VJHPIPHEXZEX" class="view-certificate" target="_blank">
+                        View Certificate
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </a>
+                </div>
+                
+                <div class="certificate-card">
+                    <div class="certificate-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff5722" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="8" r="7"></circle>
+                            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                        </svg>
+                    </div>
+                    <div class="certificate-date">March 4, 2023</div>
+                    <h3 class="certificate-title">Fundamentals of Management</h3>
+                    <div class="certificate-issuer">University of California, Irvine</div>
+                    <a href="#" class="view-certificate" target="_blank">
+                        View Certificate
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer id="contact">
+        <div class="container">
+            <div class="social-links">
+                <a href="https://github.com/thirupathireddy777" class="social-icon" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/marri-thirupathi-reddy-35177b252" class="social-icon" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                </a>
+                <a href="https://x.com/thiru5723?s=08" class="social-icon" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                    </svg>
+                </a>
+                <a href="#" class="social-icon" id="email-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                </a>
+            </div>
+            <p class="footer-text">© 2025 Thirupathi Reddy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Email Modal -->
+    <div class="modal" id="email-modal">
+        <div class="modal-content">
+            <button class="close-btn" id="close-modal">×</button>
+            <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ffded1d8ca8f8f8a888e8f8c89ffd8d2ded6d391dc">[email&#160;protected]</a></p>
+            <button class="copy-btn" id="copy-email">Copy Email</button>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        (function() {
+            function c() {
+                var b = a.contentDocument || a.contentWindow.document;
+                if (b) {
+                    var d = b.createElement('script');
+                    d.innerHTML = "window.__CF$cv$params={r:'933aa1a96f777ba0',t:'MTc0NTIxNDkxNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+                    b.getElementsByTagName('head')[0].appendChild(d);
+                }
+            }
+            if (document.body) {
+                var a = document.createElement('iframe');
+                a.height = 1;
+                a.width = 1;
+                a.style.position = 'absolute';
+                a.style.top = 0;
+                a.style.left = 0;
+                a.style.border = 'none';
+                a.style.visibility = 'hidden';
+                document.body.appendChild(a);
+                if ('loading' !== document.readyState) c();
+                else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c);
+                else {
+                    var e = document.onreadystatechange || function() {};
+                    document.onreadystatechange = function(b) {
+                        e(b);
+                        'loading' !== document.readyState && (document.onreadystatechange = e, c());
+                    };
+                }
+            }
+        })();
+
+        // Email Modal Script
+        const emailBtn = document.getElementById('email-btn');
+        const emailModal = document.getElementById('email-modal');
+        const closeModal = document.getElementById('close-modal');
+        const copyEmailBtn = document.getElementById('copy-email');
+
+        emailBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            emailModal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', () => {
+            emailModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === emailModal) {
+                emailModal.style.display = 'none';
+            }
+        });
+
+        copyEmailBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText('angu00571036@gmail.com').then(() => {
+                copyEmailBtn.textContent = 'Copied!';
+                setTimeout(() => {
+                    copyEmailBtn.textContent = 'Copy Email';
+                }, 2000);
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93469539e9dd7bbd',t:'MTc0NTM0MDIzNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
